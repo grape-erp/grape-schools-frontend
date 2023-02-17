@@ -1,16 +1,8 @@
 import axios, { AxiosError } from 'axios';
-import { parseCookies, setCookie } from 'nookies';
+import { parseCookies } from 'nookies';
 import { cleanCookies } from '../contexts/AuthContext';
 
 let cookies = parseCookies();
-
-interface IFailedRequestsQueue {
-    onSuccess: (token: string) => void;
-    onFailure: (error: AxiosError) => void;
-}
-
-let failedRequestsQueue: IFailedRequestsQueue[] = [];
-let isRefreshing = false;
 
 function getCompany() {
     cookies = parseCookies();
