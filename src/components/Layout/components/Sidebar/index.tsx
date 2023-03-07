@@ -15,8 +15,8 @@ export function Sidebar({
         // bg-slate-700
         <aside
             className={`
-                px-2
                 pb-2
+                border-r-2
                 fixed
                 md:relative
                 h-full
@@ -33,6 +33,7 @@ export function Sidebar({
                 justify-items-center
                 z-30
                 md:w-64
+                bg-white
                 ${addClassName}
             `}
         >

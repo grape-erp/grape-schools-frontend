@@ -12,10 +12,7 @@ interface IMenuGroupProps {
 export function MenuGroup({
     children,
     iconName,
-    colorClassName = `
-        bg-[#2d2870]
-        hover:bg-[#24205B]
-    `,
+    colorClassName = '',
     label,
 }: IMenuGroupProps) {
     const [expand, setExpand] = useState(false);

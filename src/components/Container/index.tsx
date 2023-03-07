@@ -5,9 +5,5 @@ interface IContainerProps {
 }
 
 export function Container({ children }: IContainerProps) {
-    return (
-        <div className="h-screen w-screen bg-gray-50 flex flex-row">
-            {children}
-        </div>
-    );
+    return <div className="h-screen w-screen flex flex-row">{children}</div>;
 }

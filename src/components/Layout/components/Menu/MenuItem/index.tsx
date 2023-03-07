@@ -1,62 +1,44 @@
-import React from 'react';
-import * as FontAwesome from 'react-icons/fa';
-import { Link } from '../../../../Link';
+/* eslint-disable import/no-extraneous-dependencies */
+import React, { ReactNode } from 'react';
+// import * as FontAwesome from 'react-icons/fa';
+import { Icon } from '@iconify/react';
 
 interface IMenuItemProps {
-    children: string;
-    iconName: string;
+    children: ReactNode;
+    iconName?: string;
+    disable?: boolean;
     onClick?: () => void;
-    href?: string;
 }
 export function MenuItem({
     children,
-    iconName,
+    iconName = '',
+    disable = false,
     onClick,
-    href,
 }: IMenuItemProps) {
-    if (href) {
-        return (
-            <Link
-                href={href}
-                iconName={iconName}
-                className={`
-                    p-2
-                    space-y-1
-                    flex
-                    flex-col
-                    items-center
-                    transition
-                    duration-200
-                    rounded-md
-                `}
-                colorClass={`
-                    bg-[#24205B]
-                    hover:bg-[#24205B]
-                `}
-            >
-                <span className="hidden md:block">{children}</span>
-            </Link>
-        );
-    }
     return (
         <div
             className={`
-                p-2
+                py-2
+                pl-6
                 space-y-1
                 flex
-                flex-col
                 items-center
                 transition
                 duration-200
-                bg-[#2d2870]
-                hover:bg-[#24205B]
+                hover:bg-gray-100
                 cursor-pointer
                 rounded-md
+                ${disable && 'text-[#BFBFBF]'}
             `}
             onClick={onClick}
         >
-            {React.createElement(FontAwesome[iconName])}
-            <span className="hidden md:block">{children}</span>
+            {iconName !== '' && (
+                <Icon
+                    icon={iconName}
+                    className="hidden md:block mr-2 w-7 h-8"
+                />
+            )}
+            <span>{children}</span>
         </div>
     );
 }

@@ -1,6 +1,5 @@
 import { ReactNode } from 'react';
-import { Buttonbar } from '../Buttonbar';
-import { Loading } from '../Loading';
+import { FaPlus } from 'react-icons/fa';
 
 interface IContentProps {
     children: ReactNode;
@@ -12,33 +11,44 @@ export function Content({ children }: IContentProps) {
     );
 }
 
-interface IContentBodyProps {
+interface IContentHeaderProps {
+    title?: string;
     children?: ReactNode;
-    buttonbar?: ReactNode[];
-    loading?: boolean;
+    register?: () => void;
 }
 
-export function ContentBody({
+export function ContentHeader({
+    title = '',
     children,
-    buttonbar,
-    loading = false,
-}: IContentBodyProps) {
-    if (loading) {
-        return <Loading />;
-    }
-
+    register,
+}: IContentHeaderProps) {
     return (
-        <>
-            {buttonbar && (
-                <Buttonbar>{buttonbar.map(button => button)}</Buttonbar>
-            )}
-            <div className="flex-1 w-full overflow-x-auto overflow-y-auto py-2 text-black flex justify-center items-center pl-3 pr-2">
-                {children && (
-                    <div className="h-full w-full space-y-4 flex-1">
-                        {children}
-                    </div>
-                )}
+        <div className="w-full">
+            <div className="w-full h-56 px-14 flex justify-between items-center">
+                <h1 className="text-3xl font-medium text-[#263238]">{title}</h1>
+                <button
+                    onClick={() => register()}
+                    className="flex justify-center items-center bg-[#677074] hover:bg-[#616a6d] text-white text-2xl font-bold w-12 h-12 md:w-60 md:h-14 rounded-lg"
+                >
+                    <FaPlus className="md:hidden" />
+                    <span className="hidden md:block">Cadastrar</span>
+                </button>
             </div>
-        </>
+            {children}
+        </div>
+    );
+}
+
+interface IContentBodyProps {
+    children?: ReactNode;
+}
+
+export function ContentBody({ children }: IContentBodyProps) {
+    return (
+        <div className="flex-1 w-full overflow-x-auto overflow-y-auto py-2 px-6 text-black flex justify-center items-center">
+            <div className="h-full w-full overflow-hidden flex flex-col">
+                {children}
+            </div>
+        </div>
     );
 }
