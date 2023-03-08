@@ -1,11 +1,12 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useState } from 'react';
-import { ContentHeader, ContentBody } from '../../../components/Content';
+import React from 'react';
+import { ContentHeader, ContentBodyForm } from '../../../components/Content';
 import { Layout } from '../../../components/Layout';
+import { Input } from '../../../components/Layout/components/Input';
+import { Toogle } from '../../../components/Layout/components/Toogle';
+import { Select } from '../../../components/Select';
 
 function ClassForm() {
-    const [open, setOpen] = useState(false);
-
     return (
         <Layout>
             <ContentHeader title="Classes" button={false}>
@@ -13,40 +14,53 @@ function ClassForm() {
                 {/* <div></div>
                 <p>Search</p> */}
             </ContentHeader>
-            <ContentBody>
-                <button
-                    onClick={() => setOpen(!open)}
-                    className="text-[#677074] bg-[#D9D9D9] font-semibold rounded-t-lg text-2xl px-10 py-3 text-center flex justify-between items-center"
-                    type="button"
-                >
-                    Informações Gerais
-                    <svg
-                        className="w-4 h-4 ml-2"
-                        aria-hidden="true"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M19 9l-7 7-7-7"
-                        />
-                    </svg>
-                </button>
-
-                <div
-                    className={`${
-                        !open && 'hidden'
-                    } bg-[#D9D9D9] font-semibold text-2xl px-10 py-3 text-center flex justify-between items-center`}
-                >
-                    <div className="py-2 text-sm text-gray-700 dark:text-gray-200">
-                        <input type="text" />
-                    </div>
-                </div>
-            </ContentBody>
+            <ContentBodyForm>
+                <Toogle title="Informações Gerais" startOpen>
+                    <Input type="text" placeholder="Ano" />
+                    <Select
+                        // label="Ação"
+                        placeholder="Selecione uma Série"
+                        // error={formState.errors.action}
+                        // {...register('action')}
+                        options={[
+                            { value: '1', text: 'Primeira Série', key: '1' },
+                            { value: '2', text: 'Segunda Série', key: '2' },
+                            { value: '3', text: 'Terceira Série', key: '3' },
+                            { value: '4', text: 'Quarta Série', key: '4' },
+                            { value: '5', text: 'Quinta Série', key: '5' },
+                        ]}
+                        // readOnly={mode !== 'edit' && mode !== 'insert'}
+                    />
+                    <Input type="text" placeholder="Tipo" />
+                    <Input type="text" placeholder="Período" />
+                    <Input type="text" placeholder="Horários de Aula" />
+                    <Input
+                        type="number"
+                        defaultValue=""
+                        placeholder="Quantidade máxima de alunos"
+                    />
+                </Toogle>
+                <Toogle title="Matérias">
+                    <Input type="text" placeholder="Ano" />
+                    <Input
+                        type="number"
+                        defaultValue=""
+                        placeholder="Quantidade máxima de alunos"
+                    />
+                </Toogle>
+                <Toogle title="Informações Gerais" startOpen>
+                    <Input type="text" placeholder="Ano" />
+                    <Input type="text" placeholder="Série" />
+                    <Input type="text" placeholder="Tipo" />
+                    <Input type="text" placeholder="Período" />
+                    <Input type="text" placeholder="Horários de Aula" />
+                    <Input
+                        type="number"
+                        defaultValue=""
+                        placeholder="Quantidade máxima de alunos"
+                    />
+                </Toogle>
+            </ContentBodyForm>
         </Layout>
     );
 }

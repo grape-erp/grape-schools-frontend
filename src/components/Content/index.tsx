@@ -26,7 +26,7 @@ export function ContentHeader({
 }: IContentHeaderProps) {
     return (
         <div className="w-full">
-            <div className="w-full h-56 px-14 flex justify-between items-center">
+            <div className="w-full h-32 px-14 flex justify-between items-center">
                 <h1 className="text-3xl font-medium text-[#263238]">{title}</h1>
                 {button && (
                     <button
@@ -51,6 +51,20 @@ export function ContentBody({ children }: IContentBodyProps) {
     return (
         <div className="flex-1 w-full overflow-x-auto overflow-y-auto py-2 px-6 text-black flex justify-center items-center">
             <div className="h-full w-full overflow-hidden flex flex-col">
+                {children}
+            </div>
+        </div>
+    );
+}
+
+interface IContentBodyFormProps {
+    children?: ReactNode;
+}
+
+export function ContentBodyForm({ children }: IContentBodyFormProps) {
+    return (
+        <div className="flex-1 w-full overflow-x-auto overflow-y-auto py-2 px-6 text-black flex justify-center items-center">
+            <div className="h-full w-full overflow-x-hidden flex flex-col">
                 {children}
             </div>
         </div>
