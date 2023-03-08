@@ -1,44 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useState } from 'react';
-import { FaEdit, FaRegTrashAlt } from 'react-icons/fa';
 import { ContentHeader, ContentBody } from '../../../components/Content';
 import { Layout } from '../../../components/Layout';
-import { Table } from '../../../components/Table';
-
-const classMates = [
-    {
-        ra: 'PE0014',
-        date: '21/12/2023',
-        client: 'Fulano',
-        Vendedor: 'Beltrano',
-        valor: 'R$ 2.000,00',
-        situacao: 'Vendido',
-    },
-    {
-        ra: 'PE0015',
-        date: '21/12/2023',
-        client: 'Fulano',
-        Vendedor: 'Beltrano',
-        valor: 'R$ 2.000,00',
-        situacao: 'Vendido',
-    },
-    {
-        ra: 'PE0016',
-        date: '21/12/2023',
-        client: 'Fulano',
-        Vendedor: 'Beltrano',
-        valor: 'R$ 2.000,00',
-        situacao: 'Vendido',
-    },
-    {
-        ra: 'PE0017',
-        date: '21/12/2023',
-        client: 'Fulano',
-        Vendedor: 'Beltrano',
-        valor: 'R$ 2.000,00',
-        situacao: 'Vendido',
-    },
-];
 
 function ClassForm() {
     const [open, setOpen] = useState(false);
@@ -66,11 +29,11 @@ function ClassForm() {
                         xmlns="http://www.w3.org/2000/svg"
                     >
                         <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
                             d="M19 9l-7 7-7-7"
-                        ></path>
+                        />
                     </svg>
                 </button>
 

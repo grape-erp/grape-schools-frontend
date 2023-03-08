@@ -1,7 +1,8 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useRef } from 'react';
+import React from 'react';
 import { FaEdit, FaRegTrashAlt } from 'react-icons/fa';
-import { useNavigate, useNavigation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 import { ContentHeader, ContentBody } from '../../components/Content';
 import { Layout } from '../../components/Layout';
 import { Table } from '../../components/Table';
@@ -44,6 +45,16 @@ const classMates = [
 function Class() {
     const navigate = useNavigate();
 
+    function accept(id: string) {
+        console.log('aceito');
+        console.log(id);
+    }
+
+    function reject(id: string) {
+        console.log('rejeitado');
+        console.log(id);
+    }
+
     return (
         <Layout>
             <ContentHeader
@@ -55,6 +66,7 @@ function Class() {
                 <p>Search</p> */}
             </ContentHeader>
             <ContentBody>
+                <ConfirmDialog />
                 <Table>
                     <thead>
                         <tr className="text-left">
@@ -121,7 +133,19 @@ function Class() {
                                 </td>
                                 <td
                                     className="px-6 py-1"
-                                    onClick={() => console.log('teste')}
+                                    onClick={() =>
+                                        confirmDialog({
+                                            message:
+                                                'Você tem certeza que deseja apagar?',
+                                            header: 'Atenção',
+                                            icon: 'pi pi-info-circle',
+                                            position: 'center',
+                                            acceptLabel: 'Sim',
+                                            rejectLabel: 'Não',
+                                            accept: () => accept('teste'),
+                                            reject: () => reject('teste'),
+                                        })
+                                    }
                                 >
                                     <FaRegTrashAlt />
                                 </td>
