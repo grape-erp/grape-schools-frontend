@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
-import React from 'react';
+import React, { useRef } from 'react';
 import { FaEdit, FaRegTrashAlt } from 'react-icons/fa';
-import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
+import { useNavigate, useNavigation } from 'react-router-dom';
 import { ContentHeader, ContentBody } from '../../components/Content';
 import { Layout } from '../../components/Layout';
 import { Table } from '../../components/Table';
@@ -42,26 +42,19 @@ const classMates = [
 ];
 
 function Class() {
-    // return <Table />;
-    function accept(id: string) {
-        console.log('aceito');
-        console.log(id);
-    }
-
-    function reject(id: string) {
-        console.log('aceito');
-        console.log(id);
-    }
+    const navigate = useNavigate();
 
     return (
         <Layout>
-            <ContentHeader title="Classes">
+            <ContentHeader
+                title="Classes"
+                register={() => navigate('/class/form/new')}
+            >
                 {/* Colocar o elemento de search */}
                 {/* <div></div>
                 <p>Search</p> */}
             </ContentHeader>
             <ContentBody>
-                <ConfirmDialog />
                 <Table>
                     <thead>
                         <tr className="text-left">
@@ -80,7 +73,7 @@ function Class() {
                             <tr
                                 className={`${
                                     index % 2 === 0 ? 'bg-gray-200' : 'bg-white'
-                                }`}
+                                } cursor-pointer`}
                                 key={index}
                             >
                                 <td
@@ -128,25 +121,8 @@ function Class() {
                                 </td>
                                 <td
                                     className="px-6 py-1"
-                                    onClick={() =>
-                                        confirmDialog({
-                                            message:
-                                                'Do you want to delete this record?',
-                                            header: 'Delete Confirmation',
-                                            icon: 'pi pi-info-circle',
-                                            position: 'center',
-                                            accept: () => accept('teste'),
-                                            reject: () => reject('teste'),
-                                        })
-                                    }
+                                    onClick={() => console.log('teste')}
                                 >
-                                    {/* <Button
-                                        label="Top"
-                                        icon="pi pi-arrow-down"
-                                        onClick={() => confirm('top')}
-                                        className="p-button-warning"
-                                        style={{ minWidth: '10rem' }}
-                                    /> */}
                                     <FaRegTrashAlt />
                                 </td>
                             </tr>

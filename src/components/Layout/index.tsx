@@ -89,7 +89,7 @@ export function Layout({ children }: ILayoutProps) {
                             </MenuItem>
                         </MenuGroup> */}
                         <MenuItem>
-                            <div className="mt-6 space-y-1 mb-12">
+                            <div className="mt-4 space-y-1">
                                 <p className="text-sm font-medium text-gray-300">
                                     Perfil
                                 </p>
@@ -103,7 +103,6 @@ export function Layout({ children }: ILayoutProps) {
                         </MenuItem>
                         <div
                             className={`
-                                py-2
                                 px-4
                                 space-y-1
                                 flex

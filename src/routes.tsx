@@ -10,7 +10,7 @@ export default function Routes() {
             <Route path="/" element={<Login />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/class" element={<Class />} />
-            <Route path="/class-form" element={<ClassForm />} />
+            <Route path="/class/form/:id" element={<ClassForm />} />
         </RoutesDOM>
     );
 }
