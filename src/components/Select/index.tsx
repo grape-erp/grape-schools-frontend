@@ -14,6 +14,7 @@ export interface IOptions {
 
 export interface ISelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
     label?: string;
+    divClassName?: string;
     // placeholder?: string;
     options: IOptions[];
     addClassName?: string;
@@ -29,12 +30,15 @@ const SelectBase: ForwardRefRenderFunction<HTMLSelectElement, ISelectProps> = (
         error = null,
         label,
         labelClassName,
+        divClassName = '',
         spanClassName = `
             block
             text-md
+            text-start
             text-gray-600
             mt-2
             mb-1
+            ml-2
         `,
         options,
         addClassName = 'rounded-md',
@@ -47,7 +51,7 @@ const SelectBase: ForwardRefRenderFunction<HTMLSelectElement, ISelectProps> = (
     ref,
 ) => {
     return (
-        <div className="md:relative">
+        <div className={`md:relative ${divClassName}`}>
             <label className={`w-full ${labelClassName}`}>
                 {label && <span className={spanClassName}>{label}</span>}
 
@@ -75,14 +79,14 @@ const SelectBase: ForwardRefRenderFunction<HTMLSelectElement, ISelectProps> = (
                         focus:outline-none
                         z-10
                         bg-transparent
-                        text-gray-400
+                        text-gray-700
                     `}
                         ref={ref}
                         disabled={readOnly}
                         {...rest}
                     >
                         <option disabled selected value="">
-                            Teste
+                            Escolha
                         </option>
                         {options.map(item => (
                             <option key={item.key} value={item.value}>

@@ -33,9 +33,11 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, IInputProps> = (
         spanClassName = `
             block
             text-md
+            text-start
             text-gray-600
             mt-2
             mb-1
+            ml-2
         `,
         className = `
             h-12
