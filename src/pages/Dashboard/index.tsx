@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import { FaEdit, FaRegTrashAlt } from 'react-icons/fa';
-import { ContentHeader, ContentBody } from '../../components/Content';
+import { ContentHeaderList, ContentBody } from '../../components/Content';
 import { Layout } from '../../components/Layout';
 import { Table } from '../../components/Table';
 
@@ -44,11 +44,11 @@ function Dashboard() {
     // return <Table />;
     return (
         <Layout>
-            <ContentHeader>
+            <ContentHeaderList>
                 {/* Colocar o elemento de search */}
                 {/* <div></div>
                 <p>Search</p> */}
-            </ContentHeader>
+            </ContentHeaderList>
             <ContentBody>
                 <Table>
                     <thead>

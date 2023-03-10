@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { FaPlus } from 'react-icons/fa';
+import { FaPlus, FaReply } from 'react-icons/fa';
 
 interface IContentProps {
     children: ReactNode;
@@ -11,19 +11,19 @@ export function Content({ children }: IContentProps) {
     );
 }
 
-interface IContentHeaderProps {
+interface IContentHeaderListProps {
     title?: string;
     button?: boolean;
     children?: ReactNode;
     register?: () => void;
 }
 
-export function ContentHeader({
+export function ContentHeaderList({
     title = '',
     button = true,
     children,
     register,
-}: IContentHeaderProps) {
+}: IContentHeaderListProps) {
     return (
         <div className="w-full">
             <div className="w-full h-32 px-14 flex justify-between items-center">
@@ -39,6 +39,40 @@ export function ContentHeader({
                 )}
             </div>
             {children}
+        </div>
+    );
+}
+
+interface IContentHeaderFormProps {
+    title?: string;
+    back: () => void;
+}
+
+export function ContentHeaderForm({
+    title = '',
+    back,
+}: IContentHeaderFormProps) {
+    return (
+        <div className="w-full">
+            <div className="w-full h-32 px-14 flex justify-between items-center">
+                <h1 className="text-3xl font-medium text-[#263238]">{title}</h1>
+                <div className="flex space-x-2">
+                    <button
+                        onClick={() => back()}
+                        className="flex justify-center items-center text-[#677074] hover:bg-[#dbdcdc] text-xl font-bold w-12 h-12 md:w-52 md:h-14 rounded-lg border border-[#677074]"
+                    >
+                        <FaReply className="md:hidden" />
+                        <span className="hidden md:block">Voltar</span>
+                    </button>
+                    <button
+                        type="submit"
+                        className="flex justify-center items-center bg-[#677074] hover:bg-[#616a6d] text-white text-xl font-bold w-12 h-12 md:w-52 md:h-14 rounded-lg"
+                    >
+                        <FaPlus className="md:hidden" />
+                        <span className="hidden md:block">Cadastrar</span>
+                    </button>
+                </div>
+            </div>
         </div>
     );
 }
