@@ -165,7 +165,7 @@ function Class() {
                                         })
                                     }
                                 >
-                                    <FaRegTrashAlt />
+                                    <FaRegTrashAlt className="hover:bg-black hover:bg-opacity-25 hover:rounded-full" />
                                 </td>
                             </tr>
                         ))}

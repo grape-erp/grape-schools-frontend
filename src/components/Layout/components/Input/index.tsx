@@ -48,7 +48,7 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, IInputProps> = (
             flex-1
             block
             w-full
-            text-gray-400
+            text-gray-700
             appearance-none
             shadow-md
             focus:shadow-blue-200

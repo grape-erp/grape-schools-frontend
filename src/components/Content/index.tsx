@@ -98,7 +98,7 @@ interface IContentBodyFormProps {
 export function ContentBodyForm({ children }: IContentBodyFormProps) {
     return (
         <div className="flex-1 w-full overflow-x-auto overflow-y-auto py-2 px-6 text-black flex justify-center items-center">
-            <div className="h-full w-full overflow-x-hidden flex flex-col">
+            <div className="h-[75vh] w-full overflow-x-hidden overflow-y-scroll flex flex-col">
                 {children}
             </div>
         </div>

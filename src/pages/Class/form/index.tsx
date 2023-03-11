@@ -63,7 +63,6 @@ function ClassForm() {
                 <ContentHeaderForm
                     title="Classes"
                     back={() => navigate('/class')}
-                    // register={() => handleSave()}
                 />
                 <ContentBodyForm>
                     <Toogle title="Informações Gerais" startOpen>
