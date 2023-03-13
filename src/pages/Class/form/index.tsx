@@ -1,5 +1,7 @@
 /* eslint-disable react/no-array-index-key */
-import React from 'react';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import React, { useEffect } from 'react';
 import { SubmitHandler, useFieldArray, useForm } from 'react-hook-form';
 import { FaPlusCircle, FaTrash } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
@@ -12,9 +14,35 @@ import { Input } from '../../../components/Layout/components/Input';
 import { Toogle } from '../../../components/Layout/components/Toogle';
 import { Select } from '../../../components/Select';
 
-interface IFormProps {
-    teste: string;
+interface IMatter {
+    id: string;
+    matter: string;
+    colaborattor: string;
 }
+
+interface IClassMate {
+    id: string;
+    ra: string;
+    classMate: string;
+}
+
+interface IFormProps {
+    year: number;
+    teaching: string;
+    classType: string;
+    period: string;
+    classStart: number;
+    classFinish: number;
+    totalClassMates: number;
+    matters: IMatter[];
+    classMates: IClassMate[];
+}
+
+const schema = yup
+    .object({
+        teaching: yup.string().required('Ensino é obrigatório'),
+    })
+    .required();
 
 function ClassForm() {
     const navigate = useNavigate();
@@ -22,13 +50,13 @@ function ClassForm() {
     const {
         handleSubmit,
         register,
-        // formState,
-        // reset,
+        formState,
+        reset,
         // setValue,
         // getValues,
         control,
-    } = useForm({
-        // resolver: yupResolver(schema),
+    } = useForm<IFormProps>({
+        resolver: yupResolver(schema),
         // defaultValues: {
         //     isActive: 1,
         // },
@@ -57,6 +85,14 @@ function ClassForm() {
         console.log('TETS');
     };
 
+    useEffect(() => {
+        const dataAtual = new Date();
+        const anoAtual = dataAtual.getFullYear();
+        reset({
+            year: anoAtual,
+        });
+    }, [reset]);
+
     return (
         <Layout>
             <form onSubmit={handleSubmit(handleSave)}>
@@ -69,15 +105,20 @@ function ClassForm() {
                         <Input
                             type="number"
                             defaultValue=""
-                            label="Ano"
-                            {...register('year')}
-                            placeholder="Digite o ano atual"
+                            label="Ano Letivo"
+                            {...register('year', {
+                                required: true,
+                            })}
+                            readOnly
+                            // placeholder="Digite o ano atual"
                         />
                         <Select
                             // ="Ação"
-                            label="Série"
-                            // error={formState.errors.action}
-                            // {...register('action')}
+                            label="Ensino"
+                            error={formState.errors.teaching}
+                            {...register('teaching', {
+                                required: true,
+                            })}
                             options={[
                                 {
                                     value: 'bercario',
@@ -105,41 +146,85 @@ function ClassForm() {
                                     key: 'pre_dois',
                                 },
                                 {
-                                    value: 'primeira',
-                                    text: 'Primeira Série',
-                                    key: 'primeira',
+                                    value: 'primeiro',
+                                    text: 'Primeiro Ano',
+                                    key: 'primeiro',
                                 },
                                 {
                                     value: 'segunda',
-                                    text: 'Segunda Série',
+                                    text: 'Segundo Ano',
                                     key: 'segunda',
                                 },
                                 {
-                                    value: 'terceira',
-                                    text: 'Terceira Série',
-                                    key: 'terceira',
+                                    value: 'terceiro',
+                                    text: 'Terceiro Ano',
+                                    key: 'terceiro',
                                 },
                                 {
-                                    value: 'quarta',
-                                    text: 'Quarta Série',
-                                    key: 'quarta',
+                                    value: 'quarto',
+                                    text: 'Quarto Ano',
+                                    key: 'quarto',
                                 },
                                 {
-                                    value: 'quinta',
-                                    text: 'Quinta Série',
-                                    key: 'quinta',
+                                    value: 'quinto',
+                                    text: 'Quinto Ano',
+                                    key: 'quinto',
+                                },
+                                {
+                                    value: 'sexto',
+                                    text: 'Sexto Ano',
+                                    key: 'sexto',
+                                },
+                                {
+                                    value: 'setimo',
+                                    text: 'Sétimo Ano',
+                                    key: 'setimo',
+                                },
+                                {
+                                    value: 'oitavo',
+                                    text: 'Oitavo Ano',
+                                    key: 'oitavo',
+                                },
+                                {
+                                    value: 'nono',
+                                    text: 'Nono Ano',
+                                    key: 'nono',
+                                },
+                                {
+                                    value: 'primeiro_medio',
+                                    text: 'Primeiro Médio',
+                                    key: 'primeiro_medio',
+                                },
+                                {
+                                    value: 'segundo_medio',
+                                    text: 'Segundo Médio',
+                                    key: 'segundo_medio',
+                                },
+                                {
+                                    value: 'terceiro_medio',
+                                    text: 'Terceiro Médio',
+                                    key: 'terceiro_medio',
                                 },
                             ]}
                         />
                         <Input
                             type="text"
-                            label="Tipo"
+                            label="Turma"
                             placeholder="Exemplo: A, B ou C"
+                            error={formState.errors.classType}
+                            {...register('classType', {
+                                required: true,
+                            })}
                         />
+
                         <Input
                             type="text"
                             label="Período"
                             placeholder="Exemplo: manhã"
+                            error={formState.errors.period}
+                            {...register('period', {
+                                required: true,
+                            })}
                         />
                         <div className="grid grid-cols-2 gap-x-2">
                             <label className="block text-base text-start text-gray-600 mt-2 ml-2 col-span-2">
@@ -149,17 +234,29 @@ function ClassForm() {
                                 type="number"
                                 defaultValue="0"
                                 label="Início"
+                                error={formState.errors.classStart}
+                                {...register('classStart', {
+                                    required: true,
+                                })}
                             />
                             <Input
                                 type="number"
                                 defaultValue="0"
                                 label="Término"
+                                error={formState.errors.classFinish}
+                                {...register('classFinish', {
+                                    required: true,
+                                })}
                             />
                         </div>
                         <Input
                             type="number"
                             defaultValue="0"
                             label="Quantidade máxima de alunos"
+                            error={formState.errors.totalClassMates}
+                            {...register('totalClassMates', {
+                                required: true,
+                            })}
                         />
                     </Toogle>
                     <Toogle title="Matérias">
@@ -271,6 +368,7 @@ function ClassForm() {
                             <button
                                 onClick={() => {
                                     appendMatter({
+                                        id: undefined,
                                         matter: '',
                                         colaborattor: '',
                                     });
@@ -339,6 +437,7 @@ function ClassForm() {
                             <button
                                 onClick={() => {
                                     appendClassMates({
+                                        id: undefined,
                                         ra: '',
                                         classMate: '',
                                     });

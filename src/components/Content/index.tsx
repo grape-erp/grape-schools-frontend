@@ -83,7 +83,7 @@ interface IContentBodyProps {
 
 export function ContentBody({ children }: IContentBodyProps) {
     return (
-        <div className="flex-1 w-full overflow-x-auto overflow-y-auto py-2 px-6 text-black flex justify-center items-center">
+        <div className="bg-[#F7F7F7] flex-1 w-full overflow-x-auto overflow-y-auto py-2 px-6 text-black flex justify-center items-center">
             <div className="h-full w-full overflow-hidden flex flex-col">
                 {children}
             </div>
@@ -97,8 +97,8 @@ interface IContentBodyFormProps {
 
 export function ContentBodyForm({ children }: IContentBodyFormProps) {
     return (
-        <div className="flex-1 w-full overflow-x-auto overflow-y-auto py-2 px-6 text-black flex justify-center items-center">
-            <div className="h-[75vh] w-full overflow-x-hidden overflow-y-scroll flex flex-col">
+        <div className="bg-[#F7F7F7] flex-1 w-full overflow-x-auto overflow-y-auto py-2 px-6 text-black flex justify-center items-center">
+            <div className="h-[calc(100vh-8rem)] w-full overflow-x-hidden overflow-y-scroll pr-4 flex flex-col pb-36">
                 {children}
             </div>
         </div>
