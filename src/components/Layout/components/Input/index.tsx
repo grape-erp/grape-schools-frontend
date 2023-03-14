@@ -66,7 +66,7 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, IInputProps> = (
     ref,
 ) => {
     return (
-        <label className={`w-full ${labelClassName}`}>
+        <label className={`w-full text-start ${labelClassName}`}>
             {label && <span className={spanClassName}>{label}</span>}
             <input
                 className={`text-xl font-light py-3 pl-6 ${className}
@@ -103,7 +103,9 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, IInputProps> = (
                 {...rest}
             />
             {error?.message && (
-                <span className="text-red-500 text-sm">{error.message}</span>
+                <span className="text-red-500 text-sm ml-2">
+                    {error.message}
+                </span>
             )}
         </label>
     );

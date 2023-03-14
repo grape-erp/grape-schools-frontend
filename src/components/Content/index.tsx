@@ -31,7 +31,7 @@ export function ContentHeaderList({
                 {button && (
                     <button
                         onClick={() => register()}
-                        className="flex justify-center items-center bg-[#677074] hover:bg-[#616a6d] text-white text-2xl font-bold w-12 h-12 md:w-60 md:h-14 rounded-lg"
+                        className="flex justify-center items-center bg-[#541554] hover:bg-[#441044] text-white text-2xl font-bold w-12 h-12 md:w-60 md:h-14 rounded-lg"
                     >
                         <FaPlus className="md:hidden" />
                         <span className="hidden md:block">Cadastrar</span>
@@ -59,14 +59,14 @@ export function ContentHeaderForm({
                 <div className="flex space-x-2">
                     <button
                         onClick={() => back()}
-                        className="flex justify-center items-center text-[#677074] hover:bg-[#dbdcdc] text-xl font-bold w-12 h-12 md:w-52 md:h-14 rounded-lg border border-[#677074]"
+                        className="flex justify-center items-center text-[#541554] hover:bg-[#dbdcdc] text-xl font-bold w-12 h-12 md:w-52 md:h-14 rounded-lg border border-[#541554]"
                     >
                         <FaReply className="md:hidden" />
                         <span className="hidden md:block">Voltar</span>
                     </button>
                     <button
                         type="submit"
-                        className="flex justify-center items-center bg-[#677074] hover:bg-[#616a6d] text-white text-xl font-bold w-12 h-12 md:w-52 md:h-14 rounded-lg"
+                        className="flex justify-center items-center bg-[#541554] hover:bg-[#441044] text-white text-xl font-bold w-12 h-12 md:w-52 md:h-14 rounded-lg"
                     >
                         <FaPlus className="md:hidden" />
                         <span className="hidden md:block">Cadastrar</span>

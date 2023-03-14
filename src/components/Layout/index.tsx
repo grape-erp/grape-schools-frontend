@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { ReactNode, useCallback, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 // import { Logo } from '../Logo';
 import { FaSignOutAlt } from 'react-icons/fa';
@@ -22,6 +22,8 @@ interface ILayoutProps {
 }
 
 export function Layout({ children }: ILayoutProps) {
+    const location = useLocation();
+
     const navigate = useNavigate();
     const [isMenuClosed, setIsMenuClosed] = useState(true);
     // const { signOut } = useAuth();
@@ -57,6 +59,7 @@ export function Layout({ children }: ILayoutProps) {
                         <MenuItem
                             iconName="fluent:class-24-regular"
                             onClick={() => navigate('/class')}
+                            selected={location.pathname === '/class'}
                         >
                             Classes
                         </MenuItem>
@@ -93,7 +96,7 @@ export function Layout({ children }: ILayoutProps) {
                                 <p className="text-sm font-medium text-gray-300">
                                     Perfil
                                 </p>
-                                <h2 className="text-xl font-medium">
+                                <h2 className="text-xl text-black font-medium">
                                     Luan Petruitis
                                 </h2>
                                 <p className="text-sm font-medium text-gray-300">

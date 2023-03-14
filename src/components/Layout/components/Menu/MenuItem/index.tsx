@@ -7,12 +7,14 @@ interface IMenuItemProps {
     children: ReactNode;
     iconName?: string;
     disable?: boolean;
+    selected?: boolean;
     onClick?: () => void;
 }
 export function MenuItem({
     children,
     iconName = '',
     disable = false,
+    selected = false,
     onClick,
 }: IMenuItemProps) {
     return (
@@ -25,10 +27,11 @@ export function MenuItem({
                 items-center
                 transition
                 duration-200
-                hover:bg-gray-100
+                hover:bg-gray-200
                 cursor-pointer
                 rounded-md
-                ${disable && 'text-[#BFBFBF]'}
+                ${selected && 'bg-[#541554] bg-opacity-20'}
+                ${disable ? 'text-[#BFBFBF]' : 'text-[#541554]'}
             `}
             onClick={onClick}
         >

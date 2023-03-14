@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import React, { useEffect } from 'react';
 import { SubmitHandler, useFieldArray, useForm } from 'react-hook-form';
 import { FaPlusCircle, FaTrash } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {
     ContentHeaderForm,
     ContentBodyForm,
@@ -31,8 +31,8 @@ interface IFormProps {
     teaching: string;
     classType: string;
     period: string;
-    classStart: number;
-    classFinish: number;
+    classStart: string;
+    classFinish: string;
     totalClassMates: number;
     matters: IMatter[];
     classMates: IClassMate[];
@@ -40,11 +40,25 @@ interface IFormProps {
 
 const schema = yup
     .object({
+        year: yup.string().required('O ano letivo é obrigatório'),
         teaching: yup.string().required('Ensino é obrigatório'),
+        classType: yup.string().required('A turma é obrigatória'),
+        period: yup.string().required('O período é obrigatório'),
+        classStart: yup
+            .string()
+            .required('O horário de início da aula é obrigatório'),
+        classFinish: yup
+            .string()
+            .required('O horário de término da aula é obrigatório'),
+        totalClassMates: yup
+            .number()
+            .required('O total de alunos na classe é obrigatório'),
     })
     .required();
 
 function ClassForm() {
+    const { id } = useParams();
+
     const navigate = useNavigate();
 
     const {
@@ -86,12 +100,14 @@ function ClassForm() {
     };
 
     useEffect(() => {
-        const dataAtual = new Date();
-        const anoAtual = dataAtual.getFullYear();
-        reset({
-            year: anoAtual,
-        });
-    }, [reset]);
+        if (id === 'new') {
+            const dataAtual = new Date();
+            const anoAtual = dataAtual.getFullYear();
+            reset({
+                year: anoAtual,
+            });
+        }
+    }, [id, reset]);
 
     return (
         <Layout>
@@ -231,8 +247,8 @@ function ClassForm() {
                                 Horários de Aula
                             </label>
                             <Input
-                                type="number"
-                                defaultValue="0"
+                                type="time"
+                                // defaultValue="0"
                                 label="Início"
                                 error={formState.errors.classStart}
                                 {...register('classStart', {
@@ -240,8 +256,8 @@ function ClassForm() {
                                 })}
                             />
                             <Input
-                                type="number"
-                                defaultValue="0"
+                                type="time"
+                                // defaultValue="0"
                                 label="Término"
                                 error={formState.errors.classFinish}
                                 {...register('classFinish', {

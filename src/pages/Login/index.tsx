@@ -33,15 +33,15 @@ function Login() {
     };
 
     return (
-        <div className="flex justify-center items-center h-screen w-full bg-[#EBDDE2]">
+        <div className="flex justify-center items-center h-screen w-full bg-[#541554]">
             <div className="flex flex-col justify-center bg-white h-96 w-96 rounded-lg p-12">
                 <div className="text-center">
                     <img
-                        className="m-auto w-10 mb-2"
-                        src="./images/logo.png"
+                        className="m-auto mb-4"
+                        src="./images/logo_sem_bg.png"
                         alt="Logo"
                     />
-                    <h1 className="text-lg">Grape</h1>
+                    {/* <h1 className="text-lg">Grape</h1> */}
                 </div>
                 <form
                     onSubmit={handleSubmit(handleSignIn)}
@@ -81,18 +81,18 @@ function Login() {
                             {formState.errors.password.message}
                         </span>
                     )}
-                    <p className="text-xs text-center my-5">
-                        Esqueceu a senha?
-                    </p>
                     <button
                         type="submit"
-                        className="mx-auto w-[241px] h-[45px] bg-[#95C37D]"
+                        className="mx-auto w-[241px] h-[45px] bg-[#54764b] hover:bg-[#3f5938] mt-5 text-white font-semibold"
                     >
                         Acessar
                     </button>
-                    <p className="text-xs text-center my-5">
-                        Não tem cadastro?
+                    <p className="text-sm text-red-500 text-center my-5 cursor-pointer hover:text-red-700 hover:underline">
+                        Esqueceu a senha?
                     </p>
+                    {/* <p className="text-xs text-center my-5">
+                        Não tem cadastro?
+                    </p> */}
                 </form>
             </div>
         </div>

@@ -51,7 +51,7 @@ const SelectBase: ForwardRefRenderFunction<HTMLSelectElement, ISelectProps> = (
     ref,
 ) => {
     return (
-        <div className={`md:relative ${divClassName}`}>
+        <div className={`md:relative text-start ${divClassName}`}>
             <label className={`w-full ${labelClassName}`}>
                 {label && <span className={spanClassName}>{label}</span>}
 
@@ -85,9 +85,7 @@ const SelectBase: ForwardRefRenderFunction<HTMLSelectElement, ISelectProps> = (
                         disabled={readOnly}
                         {...rest}
                     >
-                        <option disabled selected value="">
-                            Escolha
-                        </option>
+                        <option value="">Escolha</option>
                         {options.map(item => (
                             <option key={item.key} value={item.value}>
                                 {item.text}
@@ -97,7 +95,9 @@ const SelectBase: ForwardRefRenderFunction<HTMLSelectElement, ISelectProps> = (
                 </div>
             </label>
             {error?.message ? (
-                <span className="text-red-500 text-sm">{error.message}</span>
+                <span className="text-red-500 text-sm ml-2">
+                    {error.message}
+                </span>
             ) : null}
         </div>
     );

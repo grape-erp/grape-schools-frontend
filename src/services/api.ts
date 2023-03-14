@@ -6,7 +6,7 @@ let cookies = parseCookies();
 
 function getCompany() {
     cookies = parseCookies();
-    const company = cookies['docs.company'];
+    const company = cookies['grape.company'];
 
     if (company) {
         return JSON.parse(company).company_id;
@@ -16,9 +16,7 @@ function getCompany() {
 }
 
 export const api = axios.create({
-    baseURL: `${
-        process.env.NEXT_PUBLIC_BACKEND_HOST ?? 'http://localhost:3333'
-    }`,
+    baseURL: `${process.env.REACT_APP_BACKEND_HOST ?? 'http://localhost:3333'}`,
     headers: {
         'content-type': 'application/json',
         Authorization: `Bearer ${cookies['docs.token']}`,

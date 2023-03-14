@@ -88,7 +88,9 @@ function Class() {
                         {classMates.map((classMate, index) => (
                             <tr
                                 className={`${
-                                    index % 2 === 0 ? 'bg-gray-200' : 'bg-white'
+                                    index % 2 === 0
+                                        ? 'bg-[#8A75A5] bg-opacity-10'
+                                        : 'bg-white'
                                 } cursor-pointer`}
                                 key={index}
                             >
